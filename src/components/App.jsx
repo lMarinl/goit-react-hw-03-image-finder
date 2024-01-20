@@ -32,7 +32,6 @@ export class App extends Component {
         pictures: [...prevState.pictures, ...hits],
         status: STATUS.success,
         totalHits,
-        modalData: hits.largeImageURL,
         showLoadMore: this.state.page < Math.ceil(totalHits / 12),
       }));
     } catch (error) {

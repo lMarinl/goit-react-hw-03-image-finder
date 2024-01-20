@@ -15,7 +15,7 @@ export const ImageGalleryItem = ({
               src={picture.webformatURL}
               alt="img"
               onClick={() => {
-                handleShowModalWindow(pictures.largeImageURL);
+                handleShowModalWindow(picture.largeImageURL);
               }}
             />
           </li>
