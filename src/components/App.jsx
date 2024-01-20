@@ -32,7 +32,7 @@ export class App extends Component {
         pictures: [...prevState.pictures, ...hits],
         status: STATUS.success,
         totalHits,
-        // modalData: hits.largeImageURL,
+        modalData: hits.largeImageURL,
         showLoadMore: this.state.page < Math.ceil(totalHits / 12),
       }));
     } catch (error) {
@@ -59,6 +59,8 @@ export class App extends Component {
 
   handleShowModalWindow = largeImageUrl => {
     this.setState({ modalData: largeImageUrl, isOpenModal: true });
+    console.log(this.modalData);
+    console.log(largeImageUrl);
   };
 
   handleCloseModalWindow = () => {
@@ -72,9 +74,10 @@ export class App extends Component {
   render() {
     const { pictures, status, totalHits, isOpenModal, modalData } = this.state;
 
-    const showPictures = status === STATUS.success && Array.isArray(pictures);
-
-    const showPicturesEmpty = showPictures && pictures.length === 0;
+    const showPicturesEmpty =
+      status === STATUS.success &&
+      Array.isArray(pictures) &&
+      pictures.length === 0;
 
     const ShowButton =
       status === STATUS.success && pictures.length !== totalHits;
@@ -86,9 +89,10 @@ export class App extends Component {
         {status === STATUS.error && <p>Oops</p>}
         {showPicturesEmpty && <p>You still don't have any picture!</p>}
 
-        {showPictures && (
+        {pictures.length > 0 && (
           <ImageGallery
             pictures={pictures}
+            // modalData={modalData}
             handleShowModalWindow={this.handleShowModalWindow}
           />
         )}

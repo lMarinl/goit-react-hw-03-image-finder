@@ -1,21 +1,22 @@
 import css from './ImageGalleryItem.module.css';
 
-export const ImageGalleryItem = ({ pictures, handleShowModalWindow }) => {
+export const ImageGalleryItem = ({
+  pictures,
+  // modalData,
+  handleShowModalWindow,
+}) => {
   return (
     <>
       {pictures?.map(picture => {
         return (
-          <li
-            className={css.ImageGalleryItem}
-            key={picture.id}
-            onClick={() => {
-              handleShowModalWindow(pictures.largeImageURL);
-            }}
-          >
+          <li className={css.ImageGalleryItem} key={picture.id}>
             <img
               className={css.ImageGalleryItemImage}
               src={picture.webformatURL}
               alt="img"
+              onClick={() => {
+                handleShowModalWindow(pictures.largeImageURL);
+              }}
             />
           </li>
         );
